@@ -51,3 +51,5 @@ $ pnpm i
 # start server
 $ pnpm dev
 ```
+
+# ts-swapi-cards

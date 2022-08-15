@@ -19,3 +19,8 @@ code {
 .ring-expand {
   @apply transition-all hover:ring-2 ring-gray-900 dark:ring-gray-100 hover:ring-offset-4 hover:ring-offset-white dark:hover:ring-offset-gray-800;
 }
+
+html,
+body {
+  @apply bg-gray-900;
+}
