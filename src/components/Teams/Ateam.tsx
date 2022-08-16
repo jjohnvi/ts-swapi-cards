@@ -1,12 +1,15 @@
+import { Person } from 'utils/swapi';
+
 type TeamProps = {
-  team: Array<string>;
+  team: Array<Person>;
+  title: string;
 };
 
-export const Ateam = ({ team }: TeamProps) => {
+export const Ateam = ({ team, title }: TeamProps) => {
   return (
     <div>
-      <div>Team A</div>
-      {team.map((name) => (
+      <div>{title}</div>
+      {team.map((person) => (
         <div
           className="bg-slate-800 justify-center items-center gap-4 text-white w-auto
         p-6
@@ -15,9 +18,9 @@ export const Ateam = ({ team }: TeamProps) => {
         hover:scale-105
         ease-in
         duration-300 mt-5"
-          key={name}
+          key={person.name}
         >
-          {name}
+          {person.name}
         </div>
       ))}
     </div>

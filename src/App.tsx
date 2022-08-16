@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
 import { Card } from 'components/Card/Card';
 import { Ateam } from 'components/Teams/Ateam';
-import { Bteam } from 'components/Teams/Bteam';
+// import { Bteam } from 'components/Teams/Bteam';
 import { Person, getPeople } from 'utils/swapi';
 
 const App = () => {
   const [people, setPeople] = useState<Array<Person>>([]);
-  const [teamA, setTeamA] = useState<Array<string>>([]);
-  const [teamB, setTeamB] = useState<Array<string>>([]);
+  const [teamA, setTeamA] = useState<Array<Person>>([]);
+  const [teamB, setTeamB] = useState<Array<Person>>([]);
 
-  const pushTeamA = (name: string): void => {
-    const newPeople = people.filter((person) => {
-      return person.name != name;
+  const pushTeamA = (person: Person): void => {
+    const newPeople = people.filter((human) => {
+      return human.name != person.name;
     });
-    setTeamA([...teamA, name]);
+    setTeamA([...teamA, person]);
     setPeople(newPeople);
     // let index = people.findIndex((person) => person.name == name);
     // const spliced = people.splice(index, 1);
@@ -22,11 +22,11 @@ const App = () => {
     // setPeople(people.map((person) => person));
   };
 
-  const pushTeamB = (name: string): void => {
-    const newPeople = people.filter((person) => {
-      return person.name != name;
+  const pushTeamB = (person: Person): void => {
+    const newPeople = people.filter((human) => {
+      return human.name != person.name;
     });
-    setTeamB([...teamB, name]);
+    setTeamB([...teamB, person]);
     setPeople(newPeople);
   };
 
@@ -39,18 +39,22 @@ const App = () => {
     void fetchPeople();
   }, []);
 
+  console.log(people);
+  console.log(teamA);
+
   return (
     <div className="display justify-center flex min-h-screen bg-gray-900 gap-10 mx-72">
-      <Ateam team={teamA} />
+      <Ateam title="Team A" team={teamA} />
       <div className="grid grid-cols-1">
         {people.map((person) => {
           return (
             <div key={person.name}>
               <Card
-                name={person.name}
-                height={person.height}
-                gender={person.gender}
-                mass={person.mass}
+                // name={person.name}
+                // height={person.height}
+                // gender={person.gender}
+                // mass={person.mass}
+                person={person}
                 pushTeamA={pushTeamA}
                 pushTeamB={pushTeamB}
               />
@@ -58,7 +62,7 @@ const App = () => {
           );
         })}
       </div>
-      <Bteam team={teamB} />
+      <Ateam title="Team B" team={teamB} />
     </div>
   );
 };
