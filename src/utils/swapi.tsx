@@ -1,5 +1,17 @@
 export const getPeople = async (): Promise<Array<Person>> => {
   // const response = await axios.get('https://swapi.dev/api/people');
+  /**
+   * asynchronous functions:
+   * asynchronous functions is a function that takes some time, which usually involved a promise.
+   * Having the async before the parameter makes it so that you can use the word await in the call to a function that returns
+   * a promise. Doing this makes it so that the code waits until the promise is fulfilled. (Fulfilled value).
+   * Promise means getting a value fulfilled will take time. Await makes sure that nothing else happens until it is fulfilled.
+   * A Promise also needs a type. In this case, a promise will return an array, which has objects.
+   * I looked at the console.log and it showed that response.data was actually an object which has key value pairs, with number, null, string, and another array.
+   * Because the response.data was not an array, I typed response.data.results and returned that hence why
+   * I typed "Promise<Array<Person>>". Because response.data.results is an Array that has objects that describe a person.
+   */
+
   const responseData = {
     count: 82,
     next: 'https://swapi.dev/api/people/?page=2',
@@ -248,6 +260,17 @@ export const getPeople = async (): Promise<Array<Person>> => {
   return responseData.results;
 };
 
+//interface type is specifically or objects for typescript.
+
+/**
+ * Have to type out every key value types for every object.
+ * PeopleInfo is a type we called the object and in there we have keys that have a certain data type such as number, string, null, boolean, or another object or array.
+ * The Array type is a special type where you can determine the type of array by putting that type within `<>`. e.g. Array<whatever>
+ * In this case, the results property is an array of Person objects. We call this object type Person.
+ * So now this array will be filled with only objects that describe the properties of a person.
+ * What's next? Now we have to make another object type through typescript syntax, describing the properties of a person.
+ */
+
 export type PeopleInfo = {
   count: number;
   next: string;
@@ -268,8 +291,8 @@ export type Person = {
   mass: string;
   name: string;
   skin_color: string;
-  species: Array<String>;
-  starships: Array<String>;
+  species: Array<string>;
+  starships: Array<string>;
   url: string;
-  vehicles: Array<String>;
+  vehicles: Array<string>;
 };
